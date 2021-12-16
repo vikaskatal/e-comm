@@ -1,0 +1,23 @@
+@import "../../../assets/scss/variable";
+
+.FilterContainer{
+  padding: 30px 10px;
+  background: rgba(223, 223, 223, 0.3);
+  border-radius: 5px;
+  min-width: 120px;
+  margin-right: 10px;
+  @include tab {
+    padding: 40px 15px;
+    min-width: 180px;
+    margin-right: 20px;
+  }
+  @include air {
+    min-width: 220px;
+    margin-right: 25px;
+  }
+}
+
+.Title{
+  font-size: 20px;
+  margin-bottom: 15px;
+}

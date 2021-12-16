@@ -1,0 +1,47 @@
+:root {
+  --primary-color: #1b1d20;
+}
+
+// Breakpoints
+$bp-small: 768px; //tab
+$bp-medium: 1024px; //air
+$bp-large: 1366px; // desktops
+$bp-largeHd: 1920px;
+$bp-large2k: 2560px;
+$bp-large4k: 3840px;
+
+@mixin tab {
+  @media only screen and (min-width: $bp-small) {
+    @content;
+  }
+}
+
+@mixin air {
+  @media only screen and (min-width: $bp-medium) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $bp-large) {
+    @content;
+  }
+}
+
+@mixin tabMM {
+  @media only screen and (max-width: $bp-small - 1) {
+    @content;
+  }
+}
+
+@mixin airMM {
+  @media only screen and (max-width: $bp-medium - 1) {
+    @content;
+  }
+}
+
+@mixin desktopMM {
+  @media only screen and (max-width: $bp-large - 1) {
+    @content;
+  }
+}

@@ -1,0 +1,49 @@
+.Card {
+  background: #e9e9e9;
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
+}
+
+.ImageContainer {
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  img {
+    height: 120px;
+    width: 120px;
+    object-fit: contain;
+  }
+}
+
+.Title {
+  font-size: 15px;
+  font-weight: bold;
+  // white-space: nowrap;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  // width: 100%;
+}
+
+.Description {
+  font-size: 12px;
+  color: #737373;
+}
+
+.Price {
+  font-size: 12px;
+  line-height: 15px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.Category {
+  font-size: 10px;
+  line-height: 18px;
+  margin: 0;
+  background: #fff;
+  padding: 0 10px;
+  border-radius: 15px;
+  font-weight: 700;
+}
