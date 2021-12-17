@@ -1,4 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IProducts } from "../interface";
+
+export interface IState{
+  items: IProducts[],
+  categories: string[],
+}
 
 const initialState = {
   items: [],
@@ -9,10 +15,10 @@ export const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-    addItems: (state, action) => {
+    addItems: (state: IState, action) => {
       state.items = action.payload;
     },
-    addCategories: (state, action) => {
+    addCategories: (state: IState, action) => {
       state.categories = action.payload;
     },
   },

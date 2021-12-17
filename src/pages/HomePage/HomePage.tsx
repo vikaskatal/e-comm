@@ -6,17 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Filters from "./Filters/Filters";
 import styles from './HomePage.module.scss';
-import { IProducts } from "../../interface";
+import { IProducts, IProductSlice } from "../../interface";
 import DefaultTemplate from "../../templates/DefaultTemplate/DefaultTemplate";
 import { addItems, addCategories } from "../../redux/productSlice";
 import { AppDispatch } from "../../redux/store";
-
-interface RootState {
-  product: {
-    items: IProducts[],
-    categories: string[]
-  }
-}
 
 const HomePage = () => {
   // const [categories, setCategories] = useState([]);
@@ -25,11 +18,11 @@ const HomePage = () => {
   const [filters, setFilters] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const products = useSelector((state: RootState) => {
+  const products = useSelector((state: IProductSlice) => {
     // console.log('state', state)
     return state.product.items
   });
-  const categories = useSelector((state: RootState) => state.product.categories);
+  const categories = useSelector((state: IProductSlice) => state.product.categories);
 
   const dispatch: AppDispatch = useDispatch()
 

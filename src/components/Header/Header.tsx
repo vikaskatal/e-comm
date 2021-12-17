@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink as ReactstrapNavLink } from 'reactstrap'
+import { useSelector } from 'react-redux';
 import useAuth from '../../hooks/useAuth';
+import { ICardSlice } from '../../interface';
+import { MyRoutes } from '../../constants';
 
 function Header() {
+  const [openNav, setOpenNav] = useState(false)
+
   const { isAuthenticated, signOut } = useAuth();
+  
+  const cartItems = useSelector((state: ICardSlice) => {
+    return state.cart.items
+  });
 
   return (
     <div>
@@ -15,19 +24,20 @@ function Header() {
         container
         light
       >
-        <NavbarBrand href="/">
-          My E-comm
-        </NavbarBrand>
-        <NavbarToggler onClick={function noRefCheck(){}} />
-        <Collapse navbar className="justify-content-end">
+        <NavLink className="navbar-brand" to={MyRoutes.HOME}> My E-comm </NavLink>
+        <NavbarToggler onClick={() => setOpenNav(prev => !prev)} />
+        <Collapse isOpen={openNav} navbar className="justify-content-end">
           <Nav navbar>
-            <NavLink to="/" className="nav-link">Home</NavLink>
-            <NavLink to="/cart" className="nav-link">Cart</NavLink>
+            <NavLink to={MyRoutes.HOME} className="nav-link">Home</NavLink>
+
+            <NavLink to={MyRoutes.CART} className="nav-link">
+              Cart {cartItems.length > 0 && <>({cartItems.length})</>}
+            </NavLink>
 
             {isAuthenticated ? (
               <ReactstrapNavLink role="button" onClick={signOut}> SignOut </ReactstrapNavLink>
             ) : (
-              <NavLink to="/login" className="nav-link">Login</NavLink>
+              <NavLink to={MyRoutes.LOGIN} className="nav-link">Login</NavLink>
             )}
           </Nav>
         </Collapse>

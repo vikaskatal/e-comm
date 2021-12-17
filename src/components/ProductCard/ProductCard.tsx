@@ -1,13 +1,23 @@
+import React from "react";
 import classNames from "classnames";
 import { truncate } from "lodash";
-import React from "react";
 import { Button } from "reactstrap";
+import { useDispatch } from "react-redux";
 import { IProducts } from "../../interface";
 import styles from "./ProductCard.module.scss";
+import { addToCart } from "../../redux/cartSlice";
+import { AppDispatch } from "../../redux/store";
 
 const ProductCard = ({ id, image, title, description, price, category }: IProducts) => {
-  function addToCart (id:number) {
-    console.log(id)
+  const dispatch: AppDispatch = useDispatch()
+
+  function addToCartFun () {
+    dispatch(addToCart({
+      id,
+      image,
+      title,
+      price
+    }))
   }
   return (
     <div className={styles.Card}>
@@ -29,7 +39,7 @@ const ProductCard = ({ id, image, title, description, price, category }: IProduc
             <p className={styles.Price}>Price: {price}</p>
             <div className={styles.Category}>{category}</div>
           </div>
-          <Button color="primary" size="sm" onClick={() => addToCart(id)}>Add to cart</Button>
+          <Button color="primary" size="sm" onClick={() => addToCartFun()}>Add to cart</Button>
         </div>
       </div>
     </div>

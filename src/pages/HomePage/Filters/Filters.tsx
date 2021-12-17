@@ -1,7 +1,4 @@
 import React from "react";
-// import PropTypes from "prop-types";
-// import { FilterContainer, Title } from "./Filter.styles";
-// import { CheckBoxWithLabel } from "../../../styled-components/FormElements";
 import styles from './Filters.module.scss';
 
 interface IProps {
@@ -27,11 +24,6 @@ const Filters = ({ categories, onChangeCategories }: IProps) => {
     </div>
   );
 };
-
-// Filter.propTypes = {
-//   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-//   onChangeCategories: PropTypes.func.isRequired,
-// };
 
 Filters.defaultProps = {};
 

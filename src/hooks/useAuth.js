@@ -12,12 +12,19 @@ export default function useAuth() {
   const signIn = useCallback((authResp) => {
     dispatch(setIsLogin());
     localStorage.setItem("token", authResp.token);
-    // history.push("/catalogue");
+
+    const loginFromRoute = localStorage.getItem('loginFromRoute');
+    if(loginFromRoute) {
+      navigate(loginFromRoute);
+    } else {
+      navigate(MyRoutes.HOME);
+    }
   }, []);
 
   const signOut = useCallback(() => {
     dispatch(setIsLogin());
     localStorage.removeItem("token");
+    localStorage.removeItem('loginFromRoute');
     navigate(MyRoutes.LOGIN);
   }, []);
 

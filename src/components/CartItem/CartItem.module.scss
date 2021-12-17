@@ -1,0 +1,21 @@
+@import "../../assets/scss/variable";
+
+.TopBar {
+  padding-bottom: 25px;
+}
+
+.CartImg {
+  padding: 10px;
+  img {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+  }
+
+  @include tab {
+    img {
+      height: 70px;
+      width: 70px;
+    }
+  }
+}

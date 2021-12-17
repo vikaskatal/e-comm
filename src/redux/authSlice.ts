@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export interface IState{
+  isLogin: boolean,
+}
+
 const initialState = {
   isLogin: false,
 };
@@ -8,7 +12,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setIsLogin: (state) => {
+    setIsLogin: (state: IState) => {
       state.isLogin = !state.isLogin;
     },
   },
