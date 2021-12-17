@@ -108,7 +108,7 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>Home Page</title>
+        <title>Home</title>
       </Helmet>
       <DefaultTemplate>
         <div>

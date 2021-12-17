@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
-import { FormText, Button, Label, FormGroup, FormFeedback } from "reactstrap";
+import { FormText, Button, Label, FormGroup, FormFeedback, Alert } from "reactstrap";
 import useAuth from "../../hooks/useAuth";
 import DefaultTemplate from "../../templates/DefaultTemplate/DefaultTemplate";
 import styles from './LoginPage.module.scss';
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
   const { signIn } = useAuth();
   const {
     register,
@@ -28,20 +30,30 @@ const LoginPage = () => {
         `${process.env.REACT_APP_BACKEND_API_URL}/auth/login`,
         {
           method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({
             username: email,
             password: password,
           }),
         }
       );
+
       const authResponse = await response.json();
-      signIn(authResponse);
-    } catch {
-      console.log("Something went wrong. Please try again");
+
+      if (authResponse.token) {
+        signIn(authResponse);
+      } else {
+        setErrorMsg(authResponse.msg || "Something went wrong. Please try again")
+      }
+      
+    } catch(err:any) {
+      setErrorMsg(err.message || "Something went wrong. Please try again");
       // Temporarily sign in with dummy token in case of error. because fakestoreapi login api is causing some errors
-      signIn({
-        token: "dummyToken",
-      });
+      // signIn({
+      //   token: "dummyToken",
+      // });
     } finally {
       setLoading(false);
     }
@@ -50,7 +62,7 @@ const LoginPage = () => {
   return (
     <>
       <Helmet>
-        <title>Login Page</title>
+        <title>Login</title>
       </Helmet>
 
       <DefaultTemplate>
@@ -98,8 +110,10 @@ const LoginPage = () => {
             </form>
 
             <FormText className="mt-2">
-              Username: 'mor_2314' & Password: "83r5^_" provides by fakestoreapi.
+              Username: <strong>mor_2314</strong> & Password: <strong>83r5^_</strong> provides by fakestoreapi.
             </FormText>
+
+            {errorMsg && <Alert className="mt-2" color="danger">{errorMsg}</Alert>}
 
             {/* <p className={classNames(styles.SingUpText, 'mb-0 mt-3')}>
               New Member? <Link to="#">Singup now</Link>

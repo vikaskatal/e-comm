@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router';
 import { Container } from 'reactstrap'
 import { MyRoutes } from '../../constants';
@@ -17,12 +18,17 @@ function CheckoutPage() {
   }, [navigate]);
 
   return (
-    <DefaultTemplate>
-      <Container className="p-5 bg-light">
-        <h2>Order Placed</h2>
-        <p>Thank you for shopping with us</p>
-      </Container>
-    </DefaultTemplate>
+    <>
+      <Helmet>
+        <title>Checkout</title>
+      </Helmet>
+      <DefaultTemplate>
+        <Container className="p-5 bg-light">
+          <h2>Order Placed</h2>
+          <p>Thank you for shopping with us</p>
+        </Container>
+      </DefaultTemplate>  
+    </>
   )
 }
 
