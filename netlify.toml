@@ -1,0 +1,3 @@
+[build]
+    publish = "build/"
+    command = "CI=false && npm run build" # CI=false is used because Netlify fails builds that have warnings, which we probably don't want
