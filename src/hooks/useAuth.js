@@ -19,6 +19,7 @@ export default function useAuth() {
     } else {
       navigate(MyRoutes.HOME);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const signOut = useCallback(() => {
@@ -26,6 +27,7 @@ export default function useAuth() {
     localStorage.removeItem("token");
     localStorage.removeItem('loginFromRoute');
     navigate(MyRoutes.LOGIN);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

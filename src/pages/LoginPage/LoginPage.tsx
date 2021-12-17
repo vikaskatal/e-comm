@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import { FormText, Button, Label, FormGroup, FormFeedback } from "reactstrap";
 import useAuth from "../../hooks/useAuth";
 import DefaultTemplate from "../../templates/DefaultTemplate/DefaultTemplate";
